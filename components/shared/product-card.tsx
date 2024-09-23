@@ -20,7 +20,7 @@ export const ProductCard = ({ className, id, imgUrl, name, price }: Props) => {
         </div>
         <Title text={name} size="sm" className="mb-1 mt-3 font-bolt" />
         <p className="text-sm text-gray-400">
-          asdfasdfadf aklsdjfhkjsad akjdfhaksjdfhaskjd asdfhaskjdh adjfhs lasdkfh asdf
+          Цыпленок, моцарелла, сыры чеддер и пармезан, сырный соус, томаты, соус альфредо, чеснок
         </p>
         <div className="flex justify-between items-center mt-4">
           <span className="text-[20px]">
