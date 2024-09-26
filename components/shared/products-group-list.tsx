@@ -37,8 +37,8 @@ const ProductsGroupList = ({ className, title, listClassName, categoryId, produc
             key={product.id}
             id={product.id}
             name={product.name}
-            price={product.price}
-            imgUrl={product.imgUrl}
+            price={product.items[0].price}
+            imgUrl={product.imageUrl}
           />
         ))}
       </div>
