@@ -1,5 +1,5 @@
-import { GetSearchParams } from '@/lib/find-pizzas'
-import { getSearchParams } from '@/lib/get-searh-params'
+import { GetSearchParams } from '@/shared/lib/find-pizzas'
+import { getSearchParams } from '@/shared/lib/get-searh-params'
 import { prisma } from '@/prisma/prisma-client'
 import { NextResponse } from 'next/server'
 

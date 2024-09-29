@@ -1,8 +1,8 @@
-import { prisma } from '@/lib/prisma';
-import { NextResponse } from 'next/server';
+import { prisma } from '@/shared/lib/prisma'
+import { NextResponse } from 'next/server'
 
 export async function GET(_: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
+  const { id } = params
 
   const product = await prisma.product.findFirst({
     where: {
@@ -23,7 +23,7 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
         },
       },
     },
-  });
+  })
 
-  return NextResponse.json(product);
+  return NextResponse.json(product)
 }

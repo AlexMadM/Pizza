@@ -1,11 +1,11 @@
-import { Container } from '@/components/shared/container'
-import { Filter } from '@/components/shared/filters'
+import { Container } from '@/shared/components/shared/container'
+import { Filter } from '@/shared/components/shared/filters'
 
-import ProductsGroupList from '@/components/shared/products-group-list'
+import ProductsGroupList from '@/shared/components/shared/products-group-list'
 
-import { Title } from '@/components/shared/title'
+import { Title } from '@/shared/components/shared/title'
 
-import TopBar from '@/components/shared/top-bar'
+import TopBar from '@/shared/components/shared/top-bar'
 import { prisma } from '@/prisma/prisma-client'
 
 export default async function Home() {
