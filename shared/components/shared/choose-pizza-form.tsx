@@ -1,3 +1,4 @@
+'use client'
 import { cn } from '@/shared/lib/utils'
 
 import { Title } from './title'
@@ -11,10 +12,12 @@ import {
   pizzaTypes,
   mapPizzaTypes,
 } from '@/shared/constants/pizza'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Ingredient as IngredientType, ProductItem } from '@prisma/client'
 import { Ingredient } from './ingredient'
 import { useSet } from 'react-use'
+import { calcPizzaPrices } from '@/shared/lib/calc-pizza-prices'
+import { usePizzaOption } from '@/shared/hooks/use-pizza-option'
 
 interface Props {
   imageUrl: string
@@ -33,30 +36,22 @@ export const ChoosePizzaForm = ({
   items,
   onClickAdd,
 }: Props) => {
-  const [size, setSize] = useState<PizzaSize>(20)
-  const [type, setType] = useState<PizzaType>(1)
-  const [selectedIngredients, { toggle: toggleAddIngredient }] = useSet(new Set<number>([]))
-
-  const pizzaPrice = items.find(item => item.pizzaType === type && item.size === size)?.price || 0
-  const totalIngredientsPrice = ingredients
-    .filter(ingredient => selectedIngredients.has(ingredient.id))
-    .reduce((acc, ingredient) => acc + ingredient.price, 0)
-
-  const totalPrice = pizzaPrice + totalIngredientsPrice
+  const {
+    size,
+    type,
+    selectedIngredients,
+    toggleAddIngredient,
+    availablePizzaSizes,
+    setSize,
+    setType,
+  } = usePizzaOption(items)
+  const totalPrice = calcPizzaPrices({ ingredients, items, size, type, selectedIngredients })
   const textDetaills = `${size} см, ${mapPizzaTypes[type]} пицца`
 
   const onClickAddToCart = () => {
     onClickAdd?.()
     console.log(selectedIngredients)
   }
-
-  const availablePizzas = items.filter(item => item.pizzaType === type)
-
-  const availablePizzaSizes = pizzaSizes.map(item => ({
-    name: item.name,
-    value: item.value,
-    disabled: !availablePizzas.some(pizza => Number(pizza.size) === Number(item.value)),
-  }))
 
   return (
     <div className={cn(className, 'flex flex-1')}>
