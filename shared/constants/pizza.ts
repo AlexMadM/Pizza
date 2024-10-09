@@ -20,3 +20,10 @@ export const pizzaTypes = Object.entries(mapPizzaTypes).map(([value, name]) => (
 }))
 export type PizzaSize = keyof typeof mapPizzaSize
 export type PizzaType = keyof typeof mapPizzaTypes
+
+export const pizzaDetailsToText = (size: PizzaSize, type: PizzaType) => {
+  const textSize = mapPizzaSize[size].toLocaleLowerCase()
+  const textType = mapPizzaTypes[type]
+
+  return `${size} см (${textSize}), ${textType} тесто`
+}

@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 
 import { CartItemDetailsImage } from './cart-item-details/cart-item-details-image'
@@ -6,10 +7,11 @@ import { CartItemDetailsPrice } from './cart-item-details/cart-item-details-pric
 import { CartItemProps } from './cart-item-details/cart-item-details.types'
 
 import { Trash2Icon } from 'lucide-react'
-import { useCart } from '@/hooks/use-cart'
+
 import { Ingredient } from '@prisma/client'
 import { CountButton } from './count-button'
 import { cn } from '@/shared/lib/utils'
+import { useCart } from '@/shared/hooks/use-cart'
 
 interface Props extends CartItemProps {
   id: number

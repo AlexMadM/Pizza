@@ -17,9 +17,11 @@ import React from 'react'
 import { Title } from './title'
 import clsx from 'clsx'
 import Link from 'next/link'
-// import { useCart } from '@/hooks/use-cart'
+
 import { Button } from '../ui/button'
 import { DrawerCartItem } from './drawer-cart-item'
+import { useCart } from '@/shared/hooks/use-cart'
+import { Ingredient } from '@prisma/client'
 
 export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [redirecting, setRedirecting] = React.useState(false)
@@ -66,7 +68,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                       name={item.name}
                       imageUrl={item.imageUrl}
                       price={item.price}
-                      ingredients={item.ingredients}
+                      ingredients={item.ingredients as Ingredient[]}
                       quantity={item.quantity}
                       pizzaSize={item.pizzaSize}
                       type={item.type}

@@ -18,7 +18,7 @@ import { Ingredient } from './ingredient'
 import { useSet } from 'react-use'
 import { calcPizzaPrices } from '@/shared/lib/calc-pizza-prices'
 import { usePizzaOption } from '@/shared/hooks/use-pizza-option'
-
+import toast from 'react-hot-toast'
 interface Props {
   imageUrl: string
   name: string
@@ -44,13 +44,21 @@ export const ChoosePizzaForm = ({
     availablePizzaSizes,
     setSize,
     setType,
+
+    isSelectedIngredient,
+    addPizza,
   } = usePizzaOption(items)
   const totalPrice = calcPizzaPrices({ ingredients, items, size, type, selectedIngredients })
   const textDetaills = `${size} см, ${mapPizzaTypes[type]} пицца`
 
-  const onClickAddToCart = () => {
-    onClickAdd?.()
-    console.log(selectedIngredients)
+  const onClickAddToCart = async () => {
+    try {
+      await addPizza()
+      onClickAdd?.()
+    } catch (error) {
+      toast.error('Произошла ошибка при добавлении в корзину')
+      console.error(error)
+    }
   }
 
   return (
