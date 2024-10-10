@@ -53,14 +53,6 @@ export const usePizzaOption = (items: ProductItem[]) => {
     }
   }
 
-  const setPizzaSize = (value: number | string) => {
-    setSize(Number(value) as PizzaSize)
-  }
-
-  const setPizzaType = (value: number | string) => {
-    setType(Number(value) as PizzaType)
-  }
-
   const isSelectedIngredient = (id: number) => {
     return selectedIngredients.has(id)
   }
@@ -79,5 +71,6 @@ export const usePizzaOption = (items: ProductItem[]) => {
     textDetaills,
     isSelectedIngredient,
     addPizza,
+    loading,
   }
 }

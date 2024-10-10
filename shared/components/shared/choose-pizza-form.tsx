@@ -44,7 +44,7 @@ export const ChoosePizzaForm = ({
     availablePizzaSizes,
     setSize,
     setType,
-
+    loading,
     isSelectedIngredient,
     addPizza,
   } = usePizzaOption(items)
@@ -113,7 +113,7 @@ export const ChoosePizzaForm = ({
         </div>
 
         <Button
-          // loading={loading}
+          loading={loading}
           onClick={onClickAddToCart}
           className="h-[55px] px-10 text-base rounded-[18px] w-full"
         >

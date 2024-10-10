@@ -2,6 +2,8 @@ import { cn } from '@/shared/lib/utils'
 import ProductImage from './pizza-image'
 import { Title } from './title'
 import { Button } from '../ui/button'
+import { useCart } from '@/shared/hooks/use-cart'
+import { toast } from 'react-hot-toast'
 
 interface Props {
   imageUrl: string
@@ -22,6 +24,32 @@ export const ChooseProductForm = ({
 }: Props) => {
   const textDetaills = 'Выберите размер и состав пиццы'
   const totalPrice = 100
+
+  const { addCartItem, loading } = useCart()
+
+  const productItem = items?.[0]
+
+  if (!productItem) {
+    throw new Error('Продукт не найден')
+  }
+
+  const productPrice = productItem.price
+
+  const handleClickAdd = async () => {
+    try {
+      await addCartItem({
+        productItemId: productItem.id,
+        quantity: 1,
+      })
+      toast.success('Товар добавлен в корзину')
+    } catch (error) {
+      console.error(error)
+      toast.error('Произошла ошибка при добавлении в корзину')
+    }
+
+    onClickAdd?.()
+  }
+
   return (
     <div className={cn(className, 'flex flex-1')}>
       <div className="flex items-center justify-center flex-1 relative w-full">
@@ -38,8 +66,8 @@ export const ChooseProductForm = ({
         <p className="text-gray-400">{textDetaills}</p>
 
         <Button
-          //   loading={loading}
-          //   onClick={handleClickAdd}
+          loading={loading}
+          onClick={handleClickAdd}
           className="h-[55px] px-10 text-base rounded-[18px] w-full"
         >
           Добавить в корзину за {totalPrice} ₽

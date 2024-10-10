@@ -16,13 +16,6 @@ interface Props {
 export default function ChooseProductModal({ className, product }: Props) {
   const router = useRouter()
   const isPizzaForm = Boolean(product.items[0].pizzaType)
-  const addCartItem = useCartStore(state => state.addCartItem)
-  const onAddProduct = () => {
-    addCartItem({
-      productItemId: product.items[0].id,
-      quantity: 1,
-    })
-  }
 
   return (
     <Dialog open={Boolean(product)} onOpenChange={() => router.back()}>
@@ -35,7 +28,11 @@ export default function ChooseProductModal({ className, product }: Props) {
             items={product.items}
           />
         ) : (
-          <ChooseProductForm imageUrl={product.imageUrl} name={product.name} />
+          <ChooseProductForm
+            items={product.items}
+            imageUrl={product.imageUrl}
+            name={product.name}
+          />
         )}
       </DialogContent>
     </Dialog>
