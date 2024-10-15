@@ -9,6 +9,7 @@ export type ICartItem = {
   name: string
   imageUrl: string
   price: number
+  disabled?: boolean
   pizzaSize?: number | null
   type?: number | null
   ingredients: Array<{ name: string; price: number }>

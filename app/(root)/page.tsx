@@ -6,7 +6,6 @@ import ProductsGroupList from '@/shared/components/shared/products-group-list'
 import { Title } from '@/shared/components/shared/title'
 
 import TopBar from '@/shared/components/shared/top-bar'
-import { prisma } from '@/prisma/prisma-client'
 import { Suspense } from 'react'
 import { findPizzas, GetSearchParams } from '@/shared/lib/find-pizzas'
 

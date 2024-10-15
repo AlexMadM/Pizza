@@ -16,6 +16,7 @@ export const getCartDetails = (data: CartResponse): ReturnProps => {
     price: calcCartItemTotalAmount(item),
     pizzaSize: item.pizzaSize,
     type: item.type,
+    disabled: false,
     ingredients: item.ingredients.map(ingredient => ({
       name: ingredient.name,
       price: ingredient.price,

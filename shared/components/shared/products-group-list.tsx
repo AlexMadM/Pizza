@@ -6,6 +6,8 @@ import { cn } from '@/shared/lib/utils'
 import { ProductCard } from './product-card'
 import { useIntersection } from 'react-use'
 import { useCategoryStore } from '@/shared/store/category'
+import { Product } from '@prisma/client'
+import { ProductWithRelations } from '@/@types/prisma'
 
 interface Props {
   title: string
@@ -15,7 +17,14 @@ interface Props {
   className?: string
 }
 
-const ProductsGroupList = ({ className, title, listClassName, categoryId, products }: Props) => {
+const ProductsGroupList = ({
+  className,
+  title,
+  listClassName,
+  categoryId,
+
+  products,
+}: Props) => {
   const setActiveCategoryId = useCategoryStore(state => state.setActiveId)
   const intersectionRef = useRef(null)
   const intersection = useIntersection(intersectionRef, {
@@ -39,6 +48,7 @@ const ProductsGroupList = ({ className, title, listClassName, categoryId, produc
             name={product.name}
             price={product.items[0].price}
             imgUrl={product.imageUrl}
+            ingredients={product.ingredients}
           />
         ))}
       </div>
