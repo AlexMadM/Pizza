@@ -88,7 +88,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                     <span className="font-bold text-lg">{totalAmount} ₽</span>
                   </div>
 
-                  <Link href="/cart">
+                  <Link href="/checkout">
                     <Button
                       onClick={() => setRedirecting(true)}
                       loading={loading || redirecting}
