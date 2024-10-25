@@ -1,3 +1,4 @@
+'use client'
 import { cn } from '@/shared/lib/utils'
 import { Container } from '@/shared/components/shared/container'
 import Image from 'next/image'
